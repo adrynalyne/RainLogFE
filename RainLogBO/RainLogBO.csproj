@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -44,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\APIManager.cs" />
+    <Compile Include="Helpers\Report.cs" />
     <Compile Include="Models\Center.cs" />
-    <Compile Include="Models\RainData.cs" />
+    <Compile Include="Models\GaugeResult.cs" />
+    <Compile Include="Models\LocationData.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Selection.cs" />
@@ -64,6 +68,8 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Templates\ReportTemplate.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

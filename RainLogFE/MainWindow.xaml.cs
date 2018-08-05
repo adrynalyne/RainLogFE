@@ -27,6 +27,7 @@ namespace RainLogFE
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<GaugeResult> GaugeResult { get; set; }
         public ObservableCollection<Selection> DayStart { get; set; }
         public string DayStartSelected { get; set; }
         public ObservableCollection<Selection> DayEnd { get; set; }
@@ -83,11 +84,11 @@ namespace RainLogFE
             var monthlyUrl = ConfigurationManager.AppSettings["rainLog:MonthlyUrl"];
             var operation = ConfigurationManager.AppSettings["rainLog:Operation"];
 
-            if(YearEndSelected.Equals(String.Empty) || MonthEndSelected.Equals(String.Empty) || DayEndSelected.Equals(String.Empty))
+            if (YearEndSelected.Equals(String.Empty) || MonthEndSelected.Equals(String.Empty) || DayEndSelected.Equals(String.Empty))
             {
                 endpoint = baseUrl + dailyUrl + operation;
                 endDate = startDate;
-            }else
+            } else
             {
                 endpoint = baseUrl + monthlyUrl + operation;
             }
@@ -106,18 +107,44 @@ namespace RainLogFE
                 Center = center
             };
 
-            var rainData = new RainData
+            var locationData = new LocationData
             {
                 DateRangeStart = startDate,
                 DateRangeEnd = endDate,
                 Region = region
             };
 
+            //Get result data
             var apiManager = new APIManager();
-            var result = JsonConvert.DeserializeObject<ObservableCollection<Result>>(apiManager.Post(endpoint, rainData)).ToList();
+            var results = JsonConvert.DeserializeObject<ObservableCollection<Result>>(apiManager.Post(endpoint, locationData));
+            var gauges = results.Select(r => r.GaugeId).Distinct().ToList();
+            var gaugeTotals = results.Select(r => (r.GaugeId, r.RainAmount));
+            GaugeResult = new List<GaugeResult>();
+            //Totals per gauge
+            foreach (var gauge in gauges)
+            {
+                double totalGaugeAmount = 0;
+                foreach(var gTotal in gaugeTotals)
+                {
+                    if (gTotal.GaugeId == gauge)
+                        totalGaugeAmount += gTotal.RainAmount;
+                }
+                GaugeResult.Add(new GaugeResult
+                {
+                    GaugeId = gauge,
+                    TotalRain = totalGaugeAmount
+                });
+                totalGaugeAmount = 0;
+            }
 
-            result.ForEach(r => totalRain += (totalRain + r.RainAmount));
-            MessageBox.Show("Total Rain: " + totalRain);
+            //Totals for area
+            foreach(var result in GaugeResult)
+            {
+                totalRain += result.TotalRain;
+            }
+            lstResults.ItemsSource = GaugeResult;
+
+            lblResult.Content = Math.Round(totalRain, 2); ;
 
 
         }

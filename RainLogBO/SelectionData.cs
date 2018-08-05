@@ -28,7 +28,6 @@ namespace RainLogBO
             using (StreamReader reader = new StreamReader(dataLocation))
             {
                 var jsonStr = reader.ReadToEnd();
-
                 jsonData = JsonConvert.DeserializeObject<ObservableCollection<Selection>>(jsonStr);
             }
             return jsonData;

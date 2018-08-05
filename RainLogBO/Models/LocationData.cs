@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RainLogBO.Models
 {
-    public class RainData
+    public class LocationData
     {
         [JsonProperty(PropertyName = "dateRangeStart")]
         public string DateRangeStart { get; set; }

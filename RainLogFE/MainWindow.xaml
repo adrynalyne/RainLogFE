@@ -87,16 +87,34 @@
 
 
         </Border>
-        <Border Margin="20,0,20,0" Padding="20" Background="WhiteSmoke">
+        <Border Margin="20,0,20,0" Padding="20" Background="WhiteSmoke" Height="300">
             <StackPanel>
-                <StackPanel HorizontalAlignment="Center">
-                    <Label Content="Results" Foreground="#FF424589" FontSize="24" FontWeight="Bold" />
-                </StackPanel>
-                <ScrollViewer>
-                    <StackPanel x:Name="stackResults" Height="250">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel  Height="240" Width="300">
+                        <StackPanel>
+                            <Label Content="Results by Gauge ID" FontSize="20" FontWeight="Bold" Foreground="#FF424589" HorizontalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel>
+                            <Grid>
+                                <ListView x:Name="lstResults" Width="150" Height="200" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsDeferredScrollingEnabled="True" ScrollViewer.CanContentScroll="False"  Background="#FFF5F5F5" >
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Gauge ID" Width="60"  DisplayMemberBinding="{Binding GaugeId}"  />
+                                            <GridViewColumn Header="Total Rain" Width="60" DisplayMemberBinding="{Binding TotalRain}" />
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
 
+                        </StackPanel>
                     </StackPanel>
-                </ScrollViewer>
+                    <StackPanel Height="240" Width="300" >
+                        <StackPanel>
+                            <Label Content="Total Rain" FontSize="20" FontWeight="Bold" Foreground="#FF424589" HorizontalAlignment="Center" />
+                            <Label x:Name="lblResult" FontSize="16" Foreground="#FF424589" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </Border>
     </StackPanel>
