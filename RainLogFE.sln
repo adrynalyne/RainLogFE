@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainLogFE", "RainLogFE\RainLogFE.csproj", "{86B41EC4-4F43-4592-A2D4-9F3B642DDFAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainLogBO", "RainLogBO\RainLogBO.csproj", "{C68540FD-E623-448D-A15D-1B570D8CD8F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86B41EC4-4F43-4592-A2D4-9F3B642DDFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B41EC4-4F43-4592-A2D4-9F3B642DDFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B41EC4-4F43-4592-A2D4-9F3B642DDFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B41EC4-4F43-4592-A2D4-9F3B642DDFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C68540FD-E623-448D-A15D-1B570D8CD8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68540FD-E623-448D-A15D-1B570D8CD8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68540FD-E623-448D-A15D-1B570D8CD8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68540FD-E623-448D-A15D-1B570D8CD8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B36C2ECF-7538-4CAA-83AC-D3A6F2760C97}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,105 @@
+﻿<Window x:Class="RainLogFE.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RainLogFE"
+        mc:Ignorable="d"
+        Background="AliceBlue"
+        Title="RainLogFE" Height="650" Width="800">
+    <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
+            <Label Content="RainLog Query" Foreground="#FF424589" FontSize="24" FontWeight="Bold" />
+        </StackPanel>
+        <Border Margin="20,0,20,0" Padding="20" Background="AliceBlue">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Height="200" Width="510">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <Label Content="Starting Month" FontSize="16" FontWeight="Bold" Foreground="#FF1A3164"  />
+                        <ComboBox x:Name="cmbMonthStart" ItemsSource="{Binding MonthStart, Mode=TwoWay}" DisplayMemberPath="Text" SelectedValuePath="Value" Width="150" FontSize="16" SelectionChanged="Cmb_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <Label Content="Day" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <ComboBox x:Name="cmbDayStart" ItemsSource="{Binding DayStart, Mode=TwoWay}" DisplayMemberPath="Text" SelectedValuePath="Text" Width="50" FontSize="16"  SelectionChanged="Cmb_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <Label Content="Year" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <ComboBox x:Name="cmbYearStart" ItemsSource="{Binding YearStart, Mode=TwoWay}" DisplayMemberPath="Text" SelectedValuePath="Text" Width="85" FontSize="16"  SelectionChanged="Cmb_SelectionChanged" VerticalAlignment="Center">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <Label Content="Ending Month" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" Width="126" />
+                        <ComboBox x:Name="cmbMonthEnd" ItemsSource="{Binding MonthEnd, Mode=TwoWay}" DisplayMemberPath="Text" SelectedValuePath="Value" Width="150" FontSize="16"  SelectionChanged="Cmb_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <Label Content="Day" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <ComboBox x:Name="cmbDayEnd" ItemsSource="{Binding DayEnd, Mode=TwoWay}" DisplayMemberPath="Text" SelectedValuePath="Text" Width="50" FontSize="16"  SelectionChanged="Cmb_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <Label Content="Year" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <ComboBox x:Name="cmbYearEnd" ItemsSource="{Binding YearEnd, Mode=TwoWay}" DisplayMemberPath="Text" SelectedValuePath="Text" Width="85" FontSize="16" SelectionChanged="Cmb_SelectionChanged" VerticalAlignment="Center" >
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Latitude" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <TextBox x:Name="txtLat" Text="{Binding Latitude, Mode=TwoWay}" Width="168" FontSize="16" VerticalAlignment="Center"/>
+                        <Label Content="Longitude" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <TextBox x:Name="txtLon" Text="{Binding Longitude, Mode=TwoWay}" Width="168" FontSize="16"  VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
+                        <Label Content="Type" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <TextBox x:Name="txtType" Text="{Binding Type, Mode=TwoWay}" Width="75" FontSize="16" VerticalAlignment="Center"/>
+                        <Label Content="Radius" Foreground="#FF1A3164" FontSize="16" FontWeight="Bold" />
+                        <TextBox x:Name="txtRadius" Text="{Binding Radius, Mode=TwoWay}" Width="50" FontSize="16" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Height="200" Width="200">
+                    <Button Content="Submit Query" Foreground="#FF1A3164" Background="#FFFFFCFC" FontSize="16" FontWeight="Bold" Height="43" Margin="0,0,23,0" Click="Button_Click" />
+                </StackPanel>
+            </StackPanel>
+
+
+
+        </Border>
+        <Border Margin="20,0,20,0" Padding="20" Background="WhiteSmoke">
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                    <Label Content="Results" Foreground="#FF424589" FontSize="24" FontWeight="Bold" />
+                </StackPanel>
+                <ScrollViewer>
+                    <StackPanel x:Name="stackResults" Height="250">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+
+
+</Window>
