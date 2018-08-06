@@ -15,5 +15,7 @@ namespace RainLogBO.Models
         public string DateRangeEnd { get; set; }
         [JsonProperty(PropertyName = "region")]
         public Region Region { get; set; }
+        [JsonProperty(PropertyName = "quality")]
+        public List<string> Quality { get; set; }
     }
 }

@@ -60,6 +60,7 @@ namespace RainLogFE
             var dayCollection = sData.GetData("days.json");
             var monthCollection = sData.GetData("months.json");
             var yearCollection = sData.GetData("years.json");
+
             DayStart = dayCollection;
             DayEnd = dayCollection;
             MonthStart = monthCollection;
@@ -84,21 +85,20 @@ namespace RainLogFE
             var monthlyUrl = ConfigurationManager.AppSettings["rainLog:MonthlyUrl"];
             var operation = ConfigurationManager.AppSettings["rainLog:Operation"];
 
-            if (YearEndSelected.Equals(String.Empty) || MonthEndSelected.Equals(String.Empty) || DayEndSelected.Equals(String.Empty))
-            {
-                endpoint = baseUrl + dailyUrl + operation;
-                endDate = startDate;
-            } else
-            {
-                endpoint = baseUrl + monthlyUrl + operation;
-            }
+            endpoint = baseUrl + dailyUrl + operation;
+
 
 
             //Create data object
+
+            var rainQuality = new List<string>();
+            rainQuality.Add("Good");
+            rainQuality.Add("Trace");
             var center = new Center
             {
                 Lat = Latitude,
                 Lng = Longitude
+
             };
             var region = new Region
             {
@@ -107,11 +107,13 @@ namespace RainLogFE
                 Center = center
             };
 
+            
             var locationData = new LocationData
             {
                 DateRangeStart = startDate,
                 DateRangeEnd = endDate,
-                Region = region
+                Region = region,
+                Quality = rainQuality
             };
 
             //Get result data
@@ -127,11 +129,12 @@ namespace RainLogFE
                 foreach(var gTotal in gaugeTotals)
                 {
                     if (gTotal.GaugeId == gauge)
-                        totalGaugeAmount += gTotal.RainAmount;
+                        
+                        totalGaugeAmount += gTotal.RainAmount ?? 0;
                 }
                 GaugeResult.Add(new GaugeResult
                 {
-                    GaugeId = gauge,
+                    GaugeId = gauge.Value,
                     TotalRain = totalGaugeAmount
                 });
                 totalGaugeAmount = 0;
