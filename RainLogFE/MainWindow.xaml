@@ -92,15 +92,15 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel  Height="240" Width="300">
                         <StackPanel>
-                            <Label Content="Results by Gauge ID" FontSize="20" FontWeight="Bold" Foreground="#FF424589" HorizontalAlignment="Center" />
+                            <Label Content="Totals by Gauge" FontSize="20" FontWeight="Bold" Foreground="#FF424589" HorizontalAlignment="Center" />
                         </StackPanel>
                         <StackPanel>
                             <Grid>
-                                <ListView x:Name="lstResults" Width="150" Height="200" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsDeferredScrollingEnabled="True" ScrollViewer.CanContentScroll="False"  Background="#FFF5F5F5" >
+                                <ListView x:Name="lstResults" Width="160" Height="200" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.IsDeferredScrollingEnabled="True" ScrollViewer.CanContentScroll="False"  Background="#FFF5F5F5" >
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Gauge ID" Width="60"  DisplayMemberBinding="{Binding GaugeId}"  />
-                                            <GridViewColumn Header="Total Rain" Width="60" DisplayMemberBinding="{Binding TotalRain}" />
+                                            <GridViewColumn Header="Total Rain (in.)" Width="80" DisplayMemberBinding="{Binding TotalRain}" />
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -110,7 +110,7 @@
                     </StackPanel>
                     <StackPanel Height="240" Width="300" >
                         <StackPanel>
-                            <Label Content="Total Rain" FontSize="20" FontWeight="Bold" Foreground="#FF424589" HorizontalAlignment="Center" />
+                            <Label Content="Total Rain Collected by Gauges" FontSize="20" FontWeight="Bold" Foreground="#FF424589" HorizontalAlignment="Center" />
                             <Label x:Name="lblResult" FontSize="16" Foreground="#FF424589" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>

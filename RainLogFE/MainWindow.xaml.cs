@@ -93,7 +93,6 @@ namespace RainLogFE
 
             var rainQuality = new List<string>();
             rainQuality.Add("Good");
-            rainQuality.Add("Trace");
             var center = new Center
             {
                 Lat = Latitude,
@@ -107,18 +106,44 @@ namespace RainLogFE
                 Center = center
             };
 
+            var pagination = new Pagination
+            {
+                Offset = 0,
+                Limit = 1000
+            };
             
             var locationData = new LocationData
             {
+                Pagination = pagination,
+                Quality = rainQuality,
                 DateRangeStart = startDate,
                 DateRangeEnd = endDate,
                 Region = region,
-                Quality = rainQuality
             };
 
             //Get result data
             var apiManager = new APIManager();
-            var results = JsonConvert.DeserializeObject<ObservableCollection<Result>>(apiManager.Post(endpoint, locationData));
+            var results = new List<Result>();
+            for (int i = 0; i < 10; i++)
+            {
+                locationData.Pagination.Offset = i * 1000;
+                try
+                {
+                    var result = apiManager.Post(endpoint, locationData);
+                    if(result != "")
+                    {
+                        results.AddRange(JsonConvert.DeserializeObject<ObservableCollection<Result>>(result));
+                    }
+                }
+                catch(Exception exc)
+                {
+                    //
+                }
+
+            }
+            //var results = JsonConvert.DeserializeObject<ObservableCollection<Result>>(apiManager.Post(endpoint, locationData));
+            
+
             var gauges = results.Select(r => r.GaugeId).Distinct().ToList();
             var gaugeTotals = results.Select(r => (r.GaugeId, r.RainAmount));
             GaugeResult = new List<GaugeResult>();
@@ -145,9 +170,12 @@ namespace RainLogFE
             {
                 totalRain += result.TotalRain;
             }
-            lstResults.ItemsSource = GaugeResult;
+            lstResults.ItemsSource = GaugeResult.OrderBy(g => g.TotalRain);
 
             lblResult.Content = Math.Round(totalRain, 2); ;
+
+            var report = new Report();
+            report.CreateCsv(startDate + "__" + endDate, GaugeResult);
 
 
         }

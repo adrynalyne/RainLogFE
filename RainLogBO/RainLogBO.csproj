@@ -50,6 +50,7 @@
     <Compile Include="Models\Center.cs" />
     <Compile Include="Models\GaugeResult.cs" />
     <Compile Include="Models\LocationData.cs" />
+    <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Selection.cs" />
